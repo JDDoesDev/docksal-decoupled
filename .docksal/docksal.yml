@@ -9,7 +9,7 @@ services:
       - io.docksal.virtual-port=8000
       - io.docksal.cert-name=${VIRTUAL_HOST_CERT_NAME:-none}
     volumes:
-      - ${PROJECT_ROOT}/frontend:/var/www/gatsby:rw
+      - gatsby_node:/var/www/gatsby:rw,nocopy
       - ${SSH_AUTH_SOCK:-docksal_ssh_agent}:${SSH_AUTH_SOCK:-/.ssh-agent}:ro
     environment:
       - GIT_USER_EMAIL
@@ -22,3 +22,10 @@ services:
     dns:
       - ${DOCKSAL_DNS1}
       - ${DOCKSAL_DNS2}
+volumes:
+  gatsby_node:
+    driver: local
+    driver_opts:
+      type: nfs
+      device: :${PROJECT_ROOT}/gatsby
+      o: addr=${DOCKSAL_HOST_IP},vers=3,nolock,noacl,nocto,noatime,nodiratime,actimeo=1
