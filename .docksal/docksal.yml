@@ -8,6 +8,7 @@ services:
       - io.docksal.virtual-host=gatsby.${VIRTUAL_HOST}
       - io.docksal.virtual-port=8000
       - io.docksal.cert-name=${VIRTUAL_HOST_CERT_NAME:-none}
+      - io.docksal.shell=bash
     volumes:
       - gatsby_node:/var/www/gatsby:rw,nocopy
       - ${SSH_AUTH_SOCK:-docksal_ssh_agent}:${SSH_AUTH_SOCK:-/.ssh-agent}:ro
@@ -29,3 +30,4 @@ volumes:
       type: nfs
       device: :${PROJECT_ROOT}/gatsby
       o: addr=${DOCKSAL_HOST_IP},vers=3,nolock,noacl,nocto,noatime,nodiratime,actimeo=1
+
