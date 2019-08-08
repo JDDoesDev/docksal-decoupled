@@ -15,6 +15,7 @@ set -e
 SITE_DIRECTORY="default"
 DOCROOT_PATH="${PROJECT_ROOT}/${DOCROOT}"
 SITEDIR_PATH="${DOCROOT_PATH}/sites/${SITE_DIRECTORY}"
+DRUPAL_SITE_NAME="${DRUPAL_SITE_NAME:-My Drupal Site}"
 
 #-------------------------- END: Settings --------------------------------
 
@@ -72,7 +73,7 @@ site_install ()
 	# Credit: https://www.drupal.org/project/phpconfig/issues/1826652#comment-12071700
 	drush site-install contenta_jsonapi --verbose -y \
 		install_configure_form.enable_update_status_module=NULL \
-		--site-name='My Drupal 8 Site'
+		--site-name="$DRUPAL_SITE_NAME"
 }
 
 #-------------------------- END: Functions --------------------------------

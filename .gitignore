@@ -31,6 +31,8 @@ web/sites/*/private
 
 # Ignore SimpleTest multi-site environment.
 web/sites/simpletest
+
+# Ignore Node and Gatsby stuff
 */node_modules/
-gatsby/public
+gatsby/public/
 gatsby/.cache

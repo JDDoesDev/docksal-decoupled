@@ -14,10 +14,9 @@ This project requires [Docksal](https://docksal.io) and whatever Docker flavor y
 2. Ensure that Docksal is installed.
 3. Run `fin init` from the project root.
     * This will destroy any existing containers and volumes.
-4. Wait while Drupal installs
-5. When Drupal finishes installing and you see `Open http://contenta.docksal in your browser` run `container_user="-u docker" fin exec --in=gatsby bash -lc "npm install"` (Don't worry, this will eventually be shortened to something a little more pleasant).
-6. Once `npm` finishes doing the things, run `container_user="-u docker" fin exec --in=gatsby bash -lc "gatsby develop -H 0.0.0.0"` (again, working on shortening this thingy down a bit) to start a development server that you can visit at `http://gatsby.contenta.docksal`.
-    * Note: This currently does not allow automatic rebuilding, nor does it allow you to visit the static HTML site. This container has NodeJS available to serve the development server only.  Work is being done to direct to the static site.  PRs welcome!
+4. Wait while Drupal installs and a static version of your Gatsby site is generated.
+5. Once `fin init` finishes doing the things, you can visit `http://contenta.docksal` to view the Drupal backend or `http://static.contenta.docksal` to view the static site that was generated.  If you wish to run the Gatsby development server, run `container_user="-u docker" fin exec --in=gatsby bash -lc "gatsby develop -H 0.0.0.0"` (again, working on shortening this thingy down a bit) to start a development server that you can visit at `http://gatsby.contenta.docksal`.
+    * Note: This currently does not allow automatic rebuilding.
 
 ## Deployment
 
@@ -46,6 +45,7 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
+* Heavily inspired by [The Gatsby Drupal Example](https://using-drupal.gatsbyjs.org/)
 * Docksal for putting together an awesome local dev environment built on Docker
 * ContentaCMS for making a great Drupal distro to make decoupled that much easier
 * GatsbyJS for being blazing fast and keeping everything easy to load
@@ -56,5 +56,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 * Get PR approved to Docksal to make it easier to run the non-cli container commands.
 * Allow the Node/Gatsby container to use Unison or similar for watching file changes where applicable.
-* Additional web vhost to point to the static site for demonstration purposes.
 * TBD
