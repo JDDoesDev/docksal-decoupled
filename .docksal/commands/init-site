@@ -48,6 +48,14 @@ init_settings ()
 	copy_settings_file "${SITEDIR_PATH}/default.settings.local.php" "${SITEDIR_PATH}/settings.local.php"
 }
 
+install_composer_packages ()
+{
+  # Install composer packages
+  echo "Installing composer packages..."
+  cd $PROJECT_ROOT
+  composer install
+}
+
 # Fix file/folder permissions
 fix_permissions ()
 {
@@ -74,6 +82,7 @@ site_install ()
 # Project initialization steps
 fix_permissions
 init_settings
+install_composer_packages
 time site_install
 
 #-------------------------- END: Execution --------------------------------
