@@ -34,11 +34,24 @@ echo "Waiting 10s for MySQL to initialize...";
 sleep 10
 
 # Site initialization
-echo -e "${green_bg} Step 2 ${NC}${green} Initializing site...${NC}"
+echo -e "${green_bg} Step 2 ${NC}${green} Initializing Drupal site...${NC}"
 # This runs inside cli using http://docs.docksal.io/en/v1.4.0/fin/custom-commands/#executing-commands-inside-cli
 fin init-site
 
-echo -en "${green_bg} DONE! ${NC} "
+echo -e "${green_bg} Step 3 ${NC}${green} Building Static site...${NC}"
+
+if [[ -d "${PROJECT_ROOT}/gatsby/public" ]]; then
+  echo -e "${green} Static site exists, but since we're installing a new Drupal instance, it's got to go...${NC}"
+  rm -rf ${PROJECT_ROOT}/gatsby/public
+  rm -rf ${PROJECT_ROOT}/gatsby/.cache
+fi
+
+container_user="-u docker" fin exec --in=gatsby bash -lc "npm install"
+container_user="-u docker" fin exec --in=gatsby bash -lc "gatsby build"
+
+echo -e "${green_bg} DONE! ${NC} "
 echo -e "Open ${yellow}http://${VIRTUAL_HOST}${NC} in your browser to verify the setup."
+echo -e "Open ${yellow}http://gatsby.${VIRTUAL_HOST}${NC} in your browser to verify the development setup."
+echo -e "Open ${yellow}http://static.${VIRTUAL_HOST}${NC} in your browser to verify the static site setup."
 
 #-------------------------- END: Execution --------------------------------
