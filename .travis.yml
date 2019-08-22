@@ -1,0 +1,21 @@
+sudo: required
+language: generic
+dist: xenial
+
+services:
+  - docker
+
+env:
+  global:
+    - COMPOSER_BIN=$TRAVIS_BUILD_DIR/vendor/bin
+    - BUILD_DIR=$TRAVIS_BUILD_DIR
+    - DOCKSAL_DIR=$TRAVIS_BUILD_DIR/.docksal
+    - DOCKSAL_ENVIRONMENT=ci
+
+install:
+  - bash <(curl -fsSL https://get.docksal.io)
+  - fin version
+  - fin sysinfo
+
+script:
+  - travis_retry fin init
