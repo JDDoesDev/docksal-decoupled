@@ -16,5 +16,8 @@ install:
   - fin version
   - fin sysinfo
 
-script:
+before_script:
+  - export DOCKSAL_ENVIRONMENT=ci
+
+before_script:
   - travis_retry fin init

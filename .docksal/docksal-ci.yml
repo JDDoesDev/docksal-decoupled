@@ -1,0 +1,24 @@
+version: "2.1"
+services:
+  gatsby:
+    hostname: gatsby
+    image: ${COMPOSE_PROJECT_NAME_SAFE}_gatsby
+    build: ${PROJECT_ROOT}/.docksal/services/gatsby
+    labels:
+      - io.docksal.virtual-host=gatsby.${VIRTUAL_HOST}
+      - io.docksal.virtual-port=8000
+      - io.docksal.cert-name=${VIRTUAL_HOST_CERT_NAME:-none}
+      - io.docksal.shell=bash
+    volumes:
+      - ${PROJECT_ROOT}/gatsby:/var/www/gatsby:rw,nocopy
+      - ${SSH_AUTH_SOCK:-docksal_ssh_agent}:${SSH_AUTH_SOCK:-/.ssh-agent}:ro
+    environment:
+      - HOST_UID
+      - HOST_GID
+      - CHOKIDAR_USEPOLLING=1
+    working_dir: /var/www/gatsby
+    dns:
+      - ${DOCKSAL_DNS1}
+      - ${DOCKSAL_DNS2}
+
+
