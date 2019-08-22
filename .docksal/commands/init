@@ -44,6 +44,7 @@ if [[ -d "${PROJECT_ROOT}/gatsby/public" ]]; then
   echo -e "${green} Static site exists, but since we're installing a new Drupal instance, it's got to go...${NC}"
   rm -rf ${PROJECT_ROOT}/gatsby/public
   rm -rf ${PROJECT_ROOT}/gatsby/.cache
+  rm -rf ${PROJECT_ROOT}/gatsby/node_modules
 fi
 
 container_user="-u docker" fin exec --in=gatsby bash -lc "npm install"
