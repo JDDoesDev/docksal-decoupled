@@ -10,7 +10,7 @@ services:
       - io.docksal.cert-name=${VIRTUAL_HOST_CERT_NAME:-none}
       - io.docksal.shell=bash
     volumes:
-      - ${PROJECT_ROOT}/gatsby:/var/www/gatsby:rw,nocopy
+      - ${PROJECT_ROOT}/gatsby:/var/www/gatsby
       - ${SSH_AUTH_SOCK:-docksal_ssh_agent}:${SSH_AUTH_SOCK:-/.ssh-agent}:ro
     environment:
       - HOST_UID
