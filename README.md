@@ -1,3 +1,5 @@
+<img src="https://travis-ci.com/JDDoesDev/docksal-decoupled.svg?branch=master" alt="Build Status">
+
 # Gatsby ContentaCMS Headless Docksal Setup
 
 An opinionated setup to start a headless or decoupled [ContentaCMS (Drupal)](https://www.contentacms.org/) backend with a [GatsbyJS](https://gatsbyjs.org) front end. Uses the wonderful Drupal Umami example profile to show how GatsbyJS can parse data using GraphQL on the front end from the JSON:API (which is now part of Drupal core as of 8.7.0) and generate a blazing fast static site.
