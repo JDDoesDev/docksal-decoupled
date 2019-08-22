@@ -16,5 +16,5 @@ install:
   - fin version
   - fin sysinfo
 
-before_script:
+script:
   - travis_retry fin init
