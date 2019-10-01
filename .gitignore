@@ -36,3 +36,9 @@ web/sites/simpletest
 */node_modules/
 gatsby/public/
 gatsby/.cache
+
+# Ignore local things
+.docksal/docksal-local.*
+
+# Ignore VSCode things
+.vscode
