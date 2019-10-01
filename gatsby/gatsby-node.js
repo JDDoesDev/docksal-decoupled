@@ -4,7 +4,15 @@ const path = require(`path`)
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions
   if (node.internal.type === `recipes`) {
-    const slug = `/recipes/${node.internalId}/`
+    const slugify = () => {
+      let tempSlug = node.title
+      tempSlug = tempSlug.toLowerCase()
+      tempSlug = tempSlug.replace(/ +/g, '-')
+      console.log(tempSlug)
+      return tempSlug
+    }
+    const pathSlug = slugify()
+    const slug = `/recipes/${pathSlug}/`
     createNodeField({
       node,
       name: `slug`,
@@ -30,6 +38,7 @@ exports.createPages = ({ actions, graphql }) => {
               fields {
                 slug
               }
+              title
             }
           }
         }
